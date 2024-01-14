@@ -10,6 +10,9 @@ build/
 .idea/compiler.xml
 .idea/libraries/
 .idea/sonarlint/
+.idea/uiDesigner.xml
+.idea/vcs.xml
+.idea/gradle.xml
 *.iws
 *.iml
 *.ipr
