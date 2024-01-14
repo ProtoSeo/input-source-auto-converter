@@ -17,7 +17,8 @@ intellij {
     version.set("2023.1.5")
     type.set("IC") // Target IDE Platform
 
-    plugins.set(listOf(/* Plugin Dependencies */))
+    // For plugins from jetbrains marketplace
+    plugins.set(listOf("IdeaVim:2.7.5"))
 }
 
 tasks {
