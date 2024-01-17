@@ -4,7 +4,7 @@ import javax.swing.JComponent
 import com.intellij.openapi.diagnostic.Logger
 import com.intellij.openapi.options.Configurable
 import com.intellij.openapi.ui.ComboBox
-import com.protoseo.inputsourceautoconverter.utils.InputSourceUtils
+import com.protoseo.inputsourceautoconverter.common.InputSource
 
 class InputSourceSettingConfigurable : Configurable {
 
@@ -22,8 +22,9 @@ class InputSourceSettingConfigurable : Configurable {
 
     override fun isModified(): Boolean {
         val state = InputSourceSettingState.instance
-        val result = (component.insertModeInputSourceComboBox.selectedItem != state.insertModeInputSource
-                || component.notInsertModeInputSourceComboBox.selectedItem != state.notInsertModeInputSource)
+        val result = (component.ideInitInputSourceComboBox.selectedItem != state.ideInitInputSource
+                || component.normalModeInputSourceComboBox.selectedItem != state.normalModeInputSource
+                || component.strictModeCheckBox.isSelected != state.strictMode)
         logger.info("Configurable.isModified : $result")
         return result
     }
@@ -31,19 +32,21 @@ class InputSourceSettingConfigurable : Configurable {
     override fun apply() {
         logger.info("Configurable.apply")
         val state = InputSourceSettingState.instance
-        this.state.insertModeInputSource =  component.insertModeInputSourceComboBox.selectedItem()
-        this.state.notInsertModeInputSource = component.notInsertModeInputSourceComboBox.selectedItem()
+        this.state.ideInitInputSource = component.ideInitInputSourceComboBox.selectedItem()
+        this.state.normalModeInputSource = component.normalModeInputSourceComboBox.selectedItem()
+        this.state.strictMode = component.strictModeCheckBox.isSelected
         state.loadState(this.state)
     }
 
     override fun reset() {
         logger.info("configurable.reset")
         val state = InputSourceSettingState.instance
-        component.insertModeInputSourceComboBox.selectedItem = state.insertModeInputSource
-        component.notInsertModeInputSourceComboBox.selectedItem = state.notInsertModeInputSource
+        component.ideInitInputSourceComboBox.selectedItem = state.ideInitInputSource
+        component.normalModeInputSourceComboBox.selectedItem = state.normalModeInputSource
+        component.strictModeCheckBox.isSelected = state.strictMode
     }
 }
 
-fun ComboBox<String?>.selectedItem(): String {
-    return this.selectedItem?.toString() ?: InputSourceUtils.getDefaultInputSource()
+fun ComboBox<InputSource>.selectedItem(): InputSource {
+    return this.selectedItem as InputSource
 }
