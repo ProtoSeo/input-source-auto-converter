@@ -24,6 +24,7 @@ void findSelectableInputSources(void) {
         CFStringRef sourceId = TISGetInputSourceProperty(inputSourceRef, kTISPropertyInputSourceID);
         CFStringRef name = TISGetInputSourceProperty(inputSourceRef, kTISPropertyLocalizedName);
         CFStringRef category = TISGetInputSourceProperty(inputSourceRef, kTISPropertyInputSourceCategory);
+        CFArrayRef langs = TISGetInputSourceProperty(inputSourceRef, kTISPropertyInputSourceLanguages);
         CFBooleanRef selectable = TISGetInputSourceProperty(inputSourceRef, kTISPropertyInputSourceIsSelectCapable);
         
         if (CFBooleanGetValue(selectable) && !CFStringCompare(category, kTISCategoryKeyboardInputSource, kCFCompareCaseInsensitive)) {
@@ -34,8 +35,13 @@ void findSelectableInputSources(void) {
             int nameLength = (int)CFStringGetLength(name) * 4 + 1;
             char nameStr [nameLength];
             CFStringGetCString(name, nameStr, nameLength, kCFStringEncodingUTF8);
-            
-            printf("%s:%s\n", sourceIdStr, nameStr);
+
+            CFStringRef mainLang = (CFStringRef) CFArrayGetValueAtIndex(langs, 0);
+            int mainLangLen = (int)CFStringGetLength(mainLang) * 4 + 1;
+            char mainLangStr[mainLangLen];
+            CFStringGetCString(mainLang, mainLangStr, mainLangLen, kCFStringEncodingUTF8);
+
+            printf("%s:%s:%s\n", sourceIdStr, nameStr, mainLangStr);
         }
     }
 }
