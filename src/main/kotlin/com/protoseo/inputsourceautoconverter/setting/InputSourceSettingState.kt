@@ -7,6 +7,7 @@ import com.intellij.openapi.components.Storage
 import com.intellij.openapi.components.service
 import com.intellij.openapi.diagnostic.Logger
 import com.intellij.util.xmlb.XmlSerializerUtil
+import com.protoseo.inputsourceautoconverter.common.InputSource
 import com.protoseo.inputsourceautoconverter.utils.InputSourceUtils
 
 @Service
@@ -17,16 +18,18 @@ import com.protoseo.inputsourceautoconverter.utils.InputSourceUtils
 class InputSourceSettingState : PersistentStateComponent<InputSourceSettingState> {
 
     private val logger: Logger = Logger.getInstance(InputSourceSettingState::class.java)
-    var insertModeInputSource: String = ""
-    var notInsertModeInputSource: String = ""
+    var ideInitInputSource: InputSource = InputSource.create()
+    var normalModeInputSource: InputSource = InputSource.create()
+    var strictMode: Boolean = false
 
     init {
+        logger.info("State.Init")
         val initInputSource = InputSourceUtils.getDefaultInputSource()
-        if (insertModeInputSource.isBlank()) {
-            insertModeInputSource = initInputSource
+        if (ideInitInputSource == InputSource.create()) {
+            ideInitInputSource = initInputSource
         }
-        if (notInsertModeInputSource.isBlank()) {
-            notInsertModeInputSource = initInputSource
+        if (normalModeInputSource == InputSource.create()) {
+            normalModeInputSource = initInputSource
         }
     }
 
@@ -37,8 +40,8 @@ class InputSourceSettingState : PersistentStateComponent<InputSourceSettingState
 
     override fun loadState(state: InputSourceSettingState) {
         logger.info("State.loadState")
-        logger.info("" + insertModeInputSource)
-        logger.info("" + notInsertModeInputSource)
+        logger.info(ideInitInputSource.toString())
+        logger.info(normalModeInputSource.toString())
         XmlSerializerUtil.copyBean(state, this)
     }
 
