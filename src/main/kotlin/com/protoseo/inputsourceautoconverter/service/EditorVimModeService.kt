@@ -6,7 +6,7 @@ import com.intellij.openapi.editor.Editor
 import com.maddyhome.idea.vim.command.CommandState
 import com.maddyhome.idea.vim.command.CommandState.Mode
 
-@Service
+@Service(Service.Level.PROJECT)
 class EditorVimModeService {
 
     private val modesByEditor: MutableMap<String, Mode> = ConcurrentHashMap()
@@ -21,7 +21,7 @@ class EditorVimModeService {
     }
 
     // Insert -> Not Insert Mode(Command, Visual, CMD_Line, ...) = true
-    fun isChangeMode(editor: Editor): Boolean {
+    fun isChangedVimMode(editor: Editor): Boolean {
         val key = editor.toString()
         if (!modesByEditor.containsKey(key)) {
             return false
