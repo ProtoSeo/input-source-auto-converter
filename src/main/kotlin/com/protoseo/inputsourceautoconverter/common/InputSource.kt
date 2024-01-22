@@ -1,5 +1,6 @@
 package com.protoseo.inputsourceautoconverter.common
 
+import java.util.Locale
 import com.intellij.util.xmlb.Converter
 
 data class InputSource(
@@ -12,6 +13,10 @@ data class InputSource(
         fun create(): InputSource {
             return InputSource("", "", "")
         }
+    }
+
+    fun isEnglish(): Boolean {
+        return this.language == Locale.ENGLISH.language
     }
 
     override fun toString(): String {

@@ -10,8 +10,9 @@ import com.protoseo.inputsourceautoconverter.utils.InputSourceUtils
 
 class InputSourceSettingComponent {
 
-    val projectInitInputSourceComboBox = ComboBox(InputSourceUtils.getInputSources(), 450)
-    val normalModeInputSourceComboBox = ComboBox(InputSourceUtils.getInputSources(), 450)
+    private val defaultInputSourcesComboBox = ComboBox(InputSourceUtils.getInputSources(), 450)
+    val projectInitInputSourceComboBox = ComboBox(InputSourceUtils.getEnglishInputSources(), 450)
+    val normalModeInputSourceComboBox = ComboBox(InputSourceUtils.getEnglishInputSources(), 450)
     val strictModeCheckBox = CheckBox("")
     val mainPanel: JPanel = FormBuilder.createFormBuilder()
         .addLabeledComponent(
@@ -26,10 +27,14 @@ class InputSourceSettingComponent {
             normalModeInputSourceComboBox
         )
         .addLabeledComponent(
-            createJBLabelWithToolTipText("Auto Convert Strict Check Mode", "Can't change input source in non insert mode"),
+            createJBLabelWithToolTipText(
+                "Auto Convert Strict Check Mode",
+                "Can't change input source in non insert mode"
+            ),
             strictModeCheckBox
         )
         .addSeparator()
+        .addLabeledComponent(JBLabel("Keyboard input sources(Read Only)"), defaultInputSourcesComboBox)
         .addComponentFillVertically(JPanel(), 0)
         .panel
 

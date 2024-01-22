@@ -1,6 +1,5 @@
 package com.protoseo.inputsourceautoconverter.utils
 
-import java.util.Locale
 import com.intellij.openapi.diagnostic.Logger
 import com.protoseo.inputsourceautoconverter.common.InputSource
 import com.protoseo.inputsourceautoconverter.utils.NativeProgramUtils.loadFileFromResources
@@ -16,6 +15,10 @@ object InputSourceUtils {
         initCachedInputSources()
     }
 
+    fun getEnglishInputSources(): Array<InputSource> {
+        return getInputSources().filter { it.isEnglish() }.toTypedArray()
+    }
+
     fun getInputSources(): Array<InputSource> {
         if (!this::cachedInputSources.isInitialized) {
             initCachedInputSources()
@@ -25,7 +28,7 @@ object InputSourceUtils {
 
     fun getDefaultInputSource(): InputSource {
         for (inputSource in cachedInputSources.values) {
-            if (inputSource.language == Locale.ENGLISH.language) {
+            if (inputSource.isEnglish()) {
                 return inputSource
             }
         }
