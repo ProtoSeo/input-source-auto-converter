@@ -3,6 +3,14 @@
   <name>InputSource Auto Converter</name>
   <vendor email="dev.protoseo@google.com">protoseo</vendor>
 
+  <description><![CDATA[
+  This plugin is helpful when using IdeaVim in a non-english environment.
+  It assists in situations where you forget to switch to english while typing non-english in insert mode.
+  <br>
+  For more information visit the
+  <a href="https://github.com/ProtoSeo/input-source-auto-converter">github page</a>.
+  ]]></description>
+
   <depends>com.intellij.modules.platform</depends>
   <depends>IdeaVIM</depends>
 
