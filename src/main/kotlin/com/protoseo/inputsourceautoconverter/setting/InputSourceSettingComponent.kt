@@ -10,23 +10,23 @@ import com.protoseo.inputsourceautoconverter.utils.InputSourceUtils
 
 class InputSourceSettingComponent {
 
-    val ideInitInputSourceComboBox = ComboBox(InputSourceUtils.getInputSources(), 450)
+    val projectInitInputSourceComboBox = ComboBox(InputSourceUtils.getInputSources(), 450)
     val normalModeInputSourceComboBox = ComboBox(InputSourceUtils.getInputSources(), 450)
     val strictModeCheckBox = CheckBox("")
     val mainPanel: JPanel = FormBuilder.createFormBuilder()
         .addLabeledComponent(
-            createJBLabelWithToolTipText("IDE Init Input Source", "input source selected when IDE initialized"),
-            ideInitInputSourceComboBox
+            createJBLabelWithToolTipText("Project Init Input Source", "input source selected when Project initialized"),
+            projectInitInputSourceComboBox
         )
         .addLabeledComponent(
             createJBLabelWithToolTipText(
-                "Normal Mode(Not Insert Mode)",
-                "input sources selected in Not Insert Mode(COMMAND, VISUAL, SELECT, REPLACE, CMD_LINE)"
+                "Normal Mode(Non Insert Mode)",
+                "input sources selected in Non Insert Mode(COMMAND, VISUAL, SELECT, REPLACE, CMD_LINE)"
             ),
             normalModeInputSourceComboBox
         )
         .addLabeledComponent(
-            createJBLabelWithToolTipText("Auto Convert Strict Mode", "Can't change input source in not insert mode"),
+            createJBLabelWithToolTipText("Auto Convert Strict Check Mode", "Can't change input source in non insert mode"),
             strictModeCheckBox
         )
         .addSeparator()
@@ -35,7 +35,7 @@ class InputSourceSettingComponent {
 
     init {
         val state = ApplicationManager.getApplication().getService(InputSourceSettingState::class.java)
-        ideInitInputSourceComboBox.selectedItem = state.ideInitInputSource
+        projectInitInputSourceComboBox.selectedItem = state.projectInitInputSource
         normalModeInputSourceComboBox.selectedItem = state.normalModeInputSource
     }
 

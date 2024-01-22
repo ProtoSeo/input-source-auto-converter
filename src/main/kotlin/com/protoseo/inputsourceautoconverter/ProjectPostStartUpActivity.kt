@@ -26,7 +26,7 @@ class ProjectPostStartUpActivity : ProjectActivity {
         }
 
         if (project.isInitialized) {
-            InputSourceUtils.convertInputSource(InputSourceSettingState.instance.ideInitInputSource)
+            InputSourceUtils.convertInputSource(InputSourceSettingState.instance.projectInitInputSource)
         }
         IdeEventQueue.getInstance().addDispatcher(KeyEventDispatcher(project), createDisposableIfProjectClosed(project))
     }
