@@ -1,6 +1,10 @@
+<!-- Plugin description -->
+
 # InputSource Auto Converter
 
+<!-- Plugin description stop -->
 ![plugin-example](.github/readme/plugin-example-1.gif)
+<!-- Plugin description restart -->
 
 In IdeaVim, non-english key inputs don't use in normal mode, causing the intended commands to not be input correctly.
 
@@ -8,9 +12,11 @@ This plugin is helpful when using IdeaVim in a non-english environment. It assis
 
 ## Feature
 
+<!-- Plugin description stop -->
 ![plugin-setting-panel](.github/readme/plugin-setting-panel.png)
 
 > `Settings > Tools > InputSource Auto Converter`
+<!-- Plugin description restart -->
 
 ### Automatically convert to set english input source in project open
 
@@ -42,3 +48,5 @@ Go to `Settings > Plugins > Marketplace` and searching `InputSource Auto Convert
 ### [LangCursor](https://plugins.jetbrains.com/plugin/23464-langcursor)
 
 this plugin visually changes the color of the cursor when the input is non-english.
+
+<!-- Plugin description end -->
