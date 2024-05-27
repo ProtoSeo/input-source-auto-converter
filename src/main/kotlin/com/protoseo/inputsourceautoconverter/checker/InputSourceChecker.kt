@@ -1,5 +1,7 @@
 package com.protoseo.inputsourceautoconverter.checker
 
+import java.awt.Toolkit
+import java.awt.event.KeyEvent
 import java.awt.im.InputContext
 import java.util.Locale
 import com.intellij.openapi.components.service
@@ -28,6 +30,13 @@ class InputSourceChecker {
             val editorVimModeService = project.service<EditorVimModeService>()
             return (editorVimModeService.isFirstOpen(editor) && isNotSelectedInputSource(inputSource)) ||
                     (editorVimModeService.isChangedVimMode(editor) && isNotSelectedInputSource(inputSource))
+        }
+
+        fun checkOnCapslock(project: Project): Boolean {
+            val editor = FileEditorManager.getInstance(project).selectedTextEditor ?: return false
+
+            return isFocusCodeEditor(project) && isNotInsertMode(editor) && Toolkit.getDefaultToolkit()
+                .getLockingKeyState(KeyEvent.VK_CAPS_LOCK)
         }
 
         private fun isNotSelectedInputSource(inputSource: InputSource): Boolean {
