@@ -28,6 +28,10 @@ When transitioning from Insert Mode to Non-Insert Modes(Command Mode, Visual Mod
 
 If you forget to switch back to english after using non-english in insert mode, this plugin automatically converts to english in non-insert mode.
 
+### Automatically turn off capslock when turn on capslock in command mode(non insert mode)
+
+If you forget turn off the capslock in insert mode to use capital letter, this plugin automatically turn off capslock in non-insert mode.
+
 ### Strict mode forces an english input source in code editor when non-insert mode.
 
 Strict mode configures the input source to fixed in the code editor when not in Insert Mode.
