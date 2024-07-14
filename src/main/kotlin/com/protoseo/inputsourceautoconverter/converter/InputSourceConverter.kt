@@ -1,8 +1,10 @@
 package com.protoseo.inputsourceautoconverter.converter
 
+import com.protoseo.inputsourceautoconverter.common.InputSource
+
 interface InputSourceConverter {
 
-    fun findSelectableInputSources(): String
+    fun findSelectableInputSources(): Array<InputSource>
 
-    fun convert(inputSource: String)
+    fun convert(inputSource: InputSource)
 }
