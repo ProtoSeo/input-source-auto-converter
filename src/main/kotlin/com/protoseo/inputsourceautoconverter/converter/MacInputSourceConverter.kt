@@ -13,6 +13,17 @@ object MacInputSourceConverter : InputSourceConverter {
         return this.cachedInputSources.values.toTypedArray()
     }
 
+    fun getInputSources(): Array<InputSource> {
+        if (!this::cachedInputSources.isInitialized) {
+            this.initCachedInputSources()
+        }
+        return this.cachedInputSources.values.toTypedArray()
+    }
+
+    fun getEnglishInputSources(): Array<InputSource> {
+        return this.getInputSources().filter { it.isEnglish() }.toTypedArray()
+    }
+
     private fun initCachedInputSources() {
         val stdout = MacNative.findSelectableInputSources()
         cachedInputSources = stdout.split('\n')
