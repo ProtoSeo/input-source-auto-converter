@@ -7,8 +7,8 @@ import com.intellij.ide.IdeEventQueue.EventDispatcher
 import com.intellij.openapi.components.service
 import com.intellij.openapi.project.Project
 import com.protoseo.inputsourceautoconverter.checker.InputSourceChecker
+import com.protoseo.inputsourceautoconverter.converter.MacInputSourceConverter
 import com.protoseo.inputsourceautoconverter.setting.InputSourceSettingState
-import com.protoseo.inputsourceautoconverter.utils.InputSourceUtils
 
 class KeyEventDispatcher(private val project: Project) : EventDispatcher {
 
@@ -31,6 +31,6 @@ class KeyEventDispatcher(private val project: Project) : EventDispatcher {
     private fun convertInputSource() {
         val defaultInputSource = service<InputSourceSettingState>().normalModeInputSource
 
-        InputSourceUtils.convertInputSource(defaultInputSource)
+        MacInputSourceConverter.convert(defaultInputSource)
     }
 }

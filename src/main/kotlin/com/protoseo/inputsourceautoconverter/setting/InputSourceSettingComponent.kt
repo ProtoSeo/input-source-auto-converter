@@ -6,13 +6,13 @@ import com.intellij.openapi.ui.ComboBox
 import com.intellij.ui.components.CheckBox
 import com.intellij.ui.components.JBLabel
 import com.intellij.util.ui.FormBuilder
-import com.protoseo.inputsourceautoconverter.utils.InputSourceUtils
+import com.protoseo.inputsourceautoconverter.converter.MacInputSourceConverter
 
 class InputSourceSettingComponent {
 
-    private val defaultInputSourcesComboBox = ComboBox(InputSourceUtils.getInputSources(), 450)
-    val projectInitInputSourceComboBox = ComboBox(InputSourceUtils.getEnglishInputSources(), 450)
-    val normalModeInputSourceComboBox = ComboBox(InputSourceUtils.getEnglishInputSources(), 450)
+    private val defaultInputSourcesComboBox = ComboBox(MacInputSourceConverter.getInputSources(), 450)
+    val projectInitInputSourceComboBox = ComboBox(MacInputSourceConverter.getEnglishInputSources(), 450)
+    val normalModeInputSourceComboBox = ComboBox(MacInputSourceConverter.getEnglishInputSources(), 450)
     val strictModeCheckBox = CheckBox("")
     val mainPanel: JPanel = FormBuilder.createFormBuilder()
         .addLabeledComponent(
